@@ -1,0 +1,8 @@
+requests
+xmltodict
+beautifulsoup4
+lxml
+feedparser
+tqdm
+pandas
+datetime
