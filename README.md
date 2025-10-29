@@ -1,45 +1,61 @@
-RSS Lifestyle Scraper
+# RSS Lifestyle Scraper
 
-RSS Lifestyle Scraper adalah skrip Python untuk mengambil berita kategori Lifestyle secara otomatis dari beberapa portal berita populer Indonesia melalui RSS feed.
+Proyek ini adalah skrip Python untuk mengambil berita kategori **Lifestyle** secara otomatis dari beberapa portal berita populer Indonesia melalui RSS feed.  
 Skrip ini sederhana, efisien, dan mudah dikembangkan untuk kategori lainnya.
 
-Fitur Utama
+---
 
-Ambil berita otomatis dari Antara, Liputan6, dan Okezone
+## Daftar Portal Berita yang Diambil
 
-Parsing XML menjadi data terstruktur (JSON)
+- **Antara News**: Mengambil artikel berita dari kategori Lifestyle  
+  (https://www.antaranews.com/rss/lifestyle.xml)
+- **Liputan6**: Mengambil artikel berita dari kategori Lifestyle  
+  (https://feed.liputan6.com/rss/lifestyle)
+- **Okezone**: Mengambil artikel berita dari kategori Lifestyle  
+  (https://sindikasi.okezone.com/index.php/rss/0/Lifestyle)
 
-Hanya mengambil berita kategori Lifestyle
+---
 
-Format tanggal menggunakan standar ISO 8601
-
-Jeda acak antar scraping (ramah server dan mengurangi risiko pemblokiran)
-
-Dapat dikembangkan untuk kategori atau sumber berita lain
-
-Struktur Proyek
-rss_lifestyle_scraper/
-├── scrape_rss.py              # Skrip utama
-├── README.md                  # Dokumentasi proyek
-└── lifestyle_articles.json    # (Opsional) hasil scraping
-
-Persiapan Lingkungan
-
-Buka VS Code
-Buat folder baru, misalnya rss_lifestyle_scraper.
-
-Buat file baru
-Buat file bernama scrape_rss.py dan salin kode scraper ke dalamnya.
-
-Pastikan Python terpasang
-
-python --version
+## Struktur Proyek
 
 
-Jika belum, unduh di python.org/downloads
-.
 
-Instal library yang dibutuhkan
+UTS_RPL22_BIG DATA_AHMAD NAUFAL/
+├── uts_rpl22_scraping.ipynb # Skrip utama scraping
+├── README.md # Dokumentasi proyek
+├── news_dataset.csv # Hasil scraping (opsional)
+└── requirements.txt # Daftar dependensi
+
+
+---
+
+## Cara Menjalankan Proyek
+
+Ikuti langkah-langkah berikut untuk menyiapkan dan menjalankan proyek scraping:
+
+### 1. Persiapan Lingkungan Virtual
+
+Sangat disarankan untuk menggunakan **virtual environment** agar dependensi proyek terkelola dengan baik.
+
+```bash
+# Buat lingkungan virtual baru
+python -m venv .venv
+
+# Aktifkan lingkungan virtual
+# Di Windows:
+.venv\Scripts\activate
+
+# Di macOS/Linux:
+source .venv/bin/activate
+
+2. Instalasi Dependensi
+
+Setelah lingkungan virtual aktif, instal semua pustaka Python yang diperlukan dari requirements.txt:
+
+pip install -r requirements.txt
+
+
+Jika belum ada requirements.txt, instal pustaka dasar berikut:
 
 pip install requests
 
@@ -47,7 +63,7 @@ Menjalankan Skrip
 
 Jalankan perintah berikut di terminal VS Code:
 
-python scrape_rss.py
+python uts_rpl22_scraping.ipynb
 
 
 Contoh output jika berhasil:
@@ -56,37 +72,27 @@ Scraping Antara RSS...
 Berhasil ambil 20 artikel dari Antara
 
 Scraping Liputan6 RSS...
-Berhasil ambil 18 artikel dari Liputan6
+Berhasil ambil 30 artikel dari Liputan6
 
-Scraping Okezone RSS...
-Berhasil ambil 19 artikel dari Okezone
+Total artikel lifestyle diambil: 50
 
-Total artikel lifestyle diambil: 57
+Menyimpan Hasil Scraping
 
-Simpan Hasil ke JSON (Opsional)
-
-Tambahkan kode berikut di akhir scrape_rss.py untuk menyimpan hasil scraping ke file:
+Untuk menyimpan hasil scraping ke file CSV, tambahkan kode berikut di akhir skrip:
 
 import json
 
-with open('lifestyle_articles.json', 'w', encoding='utf-8') as f:
+with open('news_dataset.csv', 'w', encoding='utf-8') as f:
     json.dump(all_articles, f, indent=2, ensure_ascii=False)
 
-print('Hasil disimpan ke lifestyle_articles.json')
+print('Hasil disimpan ke news_dataset.csv')
 
-Sumber RSS Feed
-Sumber	URL RSS
-Antara	https://www.antaranews.com/rss/lifestyle.xml
-
-Liputan6	https://feed.liputan6.com/rss/lifestyle
-
-Okezone	https://sindikasi.okezone.com/index.php/rss/0/Lifestyle
 Tips Pengembangan
 
-Tambahkan logging untuk memantau proses scraping.
+Gunakan logging untuk memantau proses scraping.
 
-Gunakan cron job atau task scheduler agar scraping berjalan otomatis.
+Jalankan otomatis menggunakan cron job atau task scheduler.
 
-Simpan hasil ke database (SQLite, MySQL, atau PostgreSQL) untuk analisis lebih lanjut.
+Simpan hasil ke database (SQLite, MySQL, atau PostgreSQL) untuk analisis lanjut.
 
-Gunakan try-except untuk menangani error jaringan atau feed kosong.
+Gunakan blok try-except untuk menangani error jaringan atau RSS kosong
